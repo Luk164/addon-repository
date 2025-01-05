@@ -53,5 +53,10 @@ until [ -e /var/run/avahi-daemon/socket ]; do
   sleep 1s
 done
 
+# workaround for issue that the extremely high limit on open
+# files in more recent docker versions causes crash in cupsd on startup
+# (see https://github.com/moby/moby/issues/45204)
+ulimit -n 4096
+
 # Start CUPS
 /usr/sbin/cupsd -f

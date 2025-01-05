@@ -26,7 +26,7 @@ RUN apt-get update \
         | tee /etc/apt/sources.list.d/nginx.list \
     && curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add - \
     && apt-get update \
-    && apt-get install nginx nginx-module-njs \
+    && apt-get install -y --no-install-recommends nginx nginx-module-njs \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
